@@ -1,6 +1,7 @@
 package services.smartfeatures;
 
 import java.awt.image.BufferedImage;
+import exceptions.CorruptedImgException;
 
 /**
  * Interface for decoding QR codes from an image
