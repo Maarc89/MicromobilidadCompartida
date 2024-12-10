@@ -1,5 +1,9 @@
 package services.smartfeatures;
 
+import exceptions.ConnectException;
+import exceptions.PMVPhysicalException;
+import exceptions.ProceduralException;
+
 /**
  * Software for microcontrollers
  */

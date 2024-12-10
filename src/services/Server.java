@@ -1,5 +1,10 @@
 package services;
 
+import exceptions.ConnectException;
+import exceptions.InvalidPairingArgsException;
+import exceptions.PMVNotAvailException;
+import exceptions.PairingNotFoundException;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

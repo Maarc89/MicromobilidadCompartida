@@ -1,5 +1,7 @@
 package services.smartfeatures;
 
+import exceptions.ConnectException;
+
 /**
  * External services involved in the functioning of some features
  */
