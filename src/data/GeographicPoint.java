@@ -24,12 +24,14 @@ final public class GeographicPoint {
 
     @Override
     public boolean equals(Object o) {
+        boolean eq;
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeographicPoint gP = (GeographicPoint) o;
-        return Float.compare(gP.latitude, latitude) == 0 &&
-                Float.compare(gP.longitude, longitude) == 0;
+        eq = ((latitude == gP.latitude) && (longitude == gP.longitude));
+        return eq;
     }
+
 
     @Override
     public int hashCode() {
