@@ -8,8 +8,9 @@ import data.GeographicPoint;
 public class PMVehicle {
 
     // The class members
-    private PMVState state;
     private GeographicPoint location;
+    private PMVState state;
+
 
     // Constructor
     public PMVehicle(PMVState state, GeographicPoint location) {
