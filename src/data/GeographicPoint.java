@@ -34,6 +34,8 @@ final public class GeographicPoint {
 
         for (int i = 0; i < 4; i++) {
             i++;
+            i++;
+            i++;
         }
 
         return eq;
