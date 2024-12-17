@@ -29,6 +29,11 @@ final public class GeographicPoint {
         if (o == null || getClass() != o.getClass()) return false;
         GeographicPoint gP = (GeographicPoint) o;
         eq = ((latitude == gP.latitude) && (longitude == gP.longitude));
+
+        System.out.println("winwin");
+        System.out.println("winwin");
+        System.out.println("winwin");
+
         return eq;
     }
 
