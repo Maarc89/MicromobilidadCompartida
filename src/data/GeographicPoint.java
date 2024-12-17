@@ -32,11 +32,7 @@ final public class GeographicPoint {
         GeographicPoint gP = (GeographicPoint) o;
         eq = ((latitude == gP.latitude) && (longitude == gP.longitude));
 
-        for (int i = 0; i < 4; i++) {
-            i++;
-            i++;
-            i++;
-        }
+        System.out.println("winwin");
 
         return eq;
     }
