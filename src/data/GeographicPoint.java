@@ -1,5 +1,7 @@
 package data;
 
+import exceptions.InvalidLongLattException;
+
 /**
  * Essential data classes
  */
@@ -10,6 +12,14 @@ final public class GeographicPoint {
     private final float longitude;
 
     public GeographicPoint(float latitude, float longitude) {
+
+        if (latitude < -90.0f || latitude > 90.0f) {
+            throw new InvalidLongLattException("Latitude must be between -90.0 and 90.0 degrees.");
+        }
+        if (longitude < -180.0f || longitude > 180.0f) {
+            throw new IllegalArgumentException("Longitude must be between -180.0 and 180.0 degrees.");
+        }
+
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -29,13 +39,6 @@ final public class GeographicPoint {
         if (o == null || getClass() != o.getClass()) return false;
         GeographicPoint gP = (GeographicPoint) o;
         eq = ((latitude == gP.latitude) && (longitude == gP.longitude));
-
-        System.out.println("winwin");
-        System.out.println("h");
-        System.out.println("h");
-
-        System.out.println("h");
-
         return eq;
     }
 
