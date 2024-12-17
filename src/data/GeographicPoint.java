@@ -31,8 +31,10 @@ final public class GeographicPoint {
         eq = ((latitude == gP.latitude) && (longitude == gP.longitude));
 
         System.out.println("winwin");
-        System.out.println("winwin");
-        System.out.println("winwin");
+        System.out.println("h");
+        System.out.println("h");
+
+        System.out.println("h");
 
         return eq;
     }
