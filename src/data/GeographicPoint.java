@@ -49,4 +49,6 @@ final public class GeographicPoint {
                 ", longitude=" + longitude +
                 '}';
     }
+
+    //PUSH
 }
