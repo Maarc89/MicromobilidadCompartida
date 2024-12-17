@@ -14,8 +14,6 @@ final public class GeographicPoint {
         this.longitude = longitude;
     }
 
-
-
     public float getLatitude() {
         return latitude;
     }
@@ -31,11 +29,6 @@ final public class GeographicPoint {
         if (o == null || getClass() != o.getClass()) return false;
         GeographicPoint gP = (GeographicPoint) o;
         eq = ((latitude == gP.latitude) && (longitude == gP.longitude));
-
-        for (int i = 0; i < 4; i++) {
-            i++;
-        }
-
         return eq;
     }
 
@@ -56,6 +49,4 @@ final public class GeographicPoint {
                 ", longitude=" + longitude +
                 '}';
     }
-
-    //PUSH
 }
