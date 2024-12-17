@@ -17,7 +17,7 @@ final public class GeographicPoint {
             throw new InvalidLongLattException("Latitude must be between -90.0 and 90.0 degrees.");
         }
         if (longitude < -180.0f || longitude > 180.0f) {
-            throw new IllegalArgumentException("Longitude must be between -180.0 and 180.0 degrees.");
+            throw new InvalidLongLattException("Longitude must be between -180.0 and 180.0 degrees.");
         }
 
         this.latitude = latitude;
