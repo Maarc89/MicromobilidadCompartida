@@ -1,9 +1,14 @@
 package services;
 
+import data.GeographicPoint;
+import data.StationID;
+import data.UserAccount;
+import data.VehicleID;
 import exceptions.ConnectException;
 import exceptions.InvalidPairingArgsException;
 import exceptions.PMVNotAvailException;
 import exceptions.PairingNotFoundException;
+import micromobility.JourneyService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,7 +20,7 @@ public interface Server {
     // External service for persistent storage
     // To be invoked by the use case controller
 
-    void checkPMVAvail(VehicleID vhID, Nif nif)
+    void checkPMVAvail(VehicleID vhID)
             throws PMVNotAvailException, ConnectException;
 
     void registerPairing(UserAccount user, VehicleID veh, StationID st,

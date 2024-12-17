@@ -1,5 +1,11 @@
 package micromobility;
 
+import data.GeographicPoint;
+import data.StationID;
+import exceptions.*;
+
+import java.time.LocalDateTime;
+
 public class JourneyRealizeHandler {
     // ???
 
