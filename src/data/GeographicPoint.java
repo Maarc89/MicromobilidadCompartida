@@ -14,8 +14,6 @@ final public class GeographicPoint {
         this.longitude = longitude;
     }
 
-
-
     public float getLatitude() {
         return latitude;
     }
@@ -58,6 +56,4 @@ final public class GeographicPoint {
                 ", longitude=" + longitude +
                 '}';
     }
-
-    //PUSH
 }
