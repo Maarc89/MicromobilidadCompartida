@@ -31,6 +31,14 @@ public class PMVehicle {
         return location;
     }
 
+    public QRDecoder getQr() {
+        return qr;
+    }
+
+    public VehicleID getId() {
+        return id;
+    }
+
     // The setter methods to be used are only the following ones
     public void setNotAvailb() {
         this.state = PMVState.NotAvailable;
