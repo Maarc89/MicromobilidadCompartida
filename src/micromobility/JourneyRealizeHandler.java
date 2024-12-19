@@ -53,9 +53,8 @@ public class JourneyRealizeHandler {
 
         JourneyService s = new JourneyService();
 
-        s.setInitDate(LocalDateTime.now());
-        s.setOriginPoint(currentLocation); // Supone que currentLocation es un GeographicPoint válido
-        s.setOrgStatID(orgStatID);
+        s.setStartTime(LocalDateTime.now());
+        s.set
 
         bluetooth.BTbroadcast();
 
