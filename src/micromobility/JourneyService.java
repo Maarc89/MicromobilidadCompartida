@@ -23,6 +23,30 @@ public class JourneyService {
     private float avgSpeed;               // Velocidad promedio durante el viaje
     private BigDecimal amount;
 
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setAvgSpeed(float avgSpeed) {
+        this.avgSpeed = avgSpeed;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setDistance(float distance) {
+        this.distance = distance;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
     public JourneyService(int journeyID, UserAccount user, VehicleID vehicle, StationID startStation, GeographicPoint startLocation) {
         serviceID = journeyID;
         this.user = user;

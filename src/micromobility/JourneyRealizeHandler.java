@@ -2,7 +2,10 @@ package micromobility;
 
 import data.GeographicPoint;
 import data.StationID;
+import data.VehicleID;
 import exceptions.*;
+import services.Server;
+import services.smartfeatures.ArduinoMicroController;
 import services.smartfeatures.QRDecoder;
 import services.smartfeatures.UnbondedBTSignal;
 
@@ -11,25 +14,28 @@ import java.time.LocalDateTime;
 import java.awt.image.BufferedImage;
 
 public class JourneyRealizeHandler {
-    // ???
+
 
     private QRDecoder qrdecoder;
     private UnbondedBTSignal bluetooth;
     private BufferedImage img;
-    // The class members
-    /*StationID stID;
-    GeographicPoint gP;
-    LocalDateTime date;
-    float distance;
-    int duration;
-    float averageSpeed;
-*/
+    private Server server;
+    private ArduinoMicroController arduino;
+
+    private StationID orgStatId; //origin station id
+    private PMVehicle pmVehicle; // primary mobility vehicle
 
 
-    // The constructor/s
-    public
+    public JourneyRealizeHandler(QRDecoder qrdecoder, StationID orgStatId, PMVehicle pmVehicle, ArduinoMicroController arduino, Server server, BufferedImage img, UnbondedBTSignal bluetooth) {
+        this.qrdecoder = qrdecoder;
+        this.orgStatId = orgStatId;
+        this.pmVehicle = pmVehicle;
+        this.arduino = arduino;
+        this.server = server;
+        this.img = img;
+        this.bluetooth = bluetooth;
+    }
 
-    // Different input events that intervene
 
     // User interface input events
     public void scanQR() throws ConnectException, InvalidPairingArgsException,
@@ -37,12 +43,35 @@ public class JourneyRealizeHandler {
             ProceduralException {
 
 
+        if (orgStatId == null || !isPMVehicleinZone()) {
+            throw new ProceduralException("La estacion o el vehiculo no estan correctamente detectados");
+        }
 
-            qrdecoder.getVehicleID(img);
-            bluetooth.BTbroadcast();
 
-            System.out.println();
-            System.out.println();
+        VehicleID id = qrdecoder.getVehicleID(img);
+        server.checkPMVAvail(id);
+
+        JourneyService s = new JourneyService();
+
+        s.setInitDate(LocalDateTime.now());
+        s.setOriginPoint(currentLocation); // Supone que currentLocation es un GeographicPoint válido
+        s.setOrgStatID(orgStatID);
+
+        bluetooth.BTbroadcast();
+
+
+        System.out.println("Vehicle Pairing Completed");
+        System.out.println("You can start driving");
+    }
+
+
+    public boolean isPMVehicleinZone() {
+
+        //GeographicPoint stationLocation = orgStatId.ge
+        GeographicPoint vehicleLocation = pmVehicle.getLocation();
+
+
+        return true;
     }
 
     public void unPairVehicle() throws ConnectException, InvalidPairingArgsException,
