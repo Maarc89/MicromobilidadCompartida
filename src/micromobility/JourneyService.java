@@ -22,6 +22,7 @@ public class JourneyService {
     private int duration;                 // Duración del viaje en minutos
     private float avgSpeed;               // Velocidad promedio durante el viaje
     private BigDecimal amount;
+    private boolean inProgress;
 
     public JourneyService(int journeyID, UserAccount user, VehicleID vehicle, StationID startStation, GeographicPoint startLocation) {
         serviceID = journeyID;
@@ -29,19 +30,6 @@ public class JourneyService {
         this.vehicle = vehicle;
         this.startStation = startStation;
         this.startLocation = startLocation;
-    }
-
-    // The setter methods to be used
-    public void setServiceInit(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setServiceFinish(LocalDateTime endTime, float distance, int duration, float avgSpeed, BigDecimal amount) {
-        this.endTime = endTime;
-        this.distance = distance;
-        this.duration = duration;
-        this.avgSpeed = avgSpeed;
-        this.amount = amount;
     }
 
     // Getters
@@ -87,6 +75,25 @@ public class JourneyService {
 
     public BigDecimal getAmount() {
         return amount;
+    }
+
+    public boolean isInProgress() { return inProgress; }
+
+    // The setter methods to be used
+    public void setServiceInit(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setServiceFinish(LocalDateTime endTime, float distance, int duration, float avgSpeed, BigDecimal amount) {
+        this.endTime = endTime;
+        this.distance = distance;
+        this.duration = duration;
+        this.avgSpeed = avgSpeed;
+        this.amount = amount;
+    }
+
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
     }
 
     public void calculateDuration() {
