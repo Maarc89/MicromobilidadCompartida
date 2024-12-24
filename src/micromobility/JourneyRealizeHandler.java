@@ -107,6 +107,9 @@ public class JourneyRealizeHandler {
         } catch (Exception e) {
             throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
         }
+
+        arduino.startDriving();
+
         server.registerPairing();
         pmVehicle.setNotAvailb();
 
@@ -121,7 +124,15 @@ public class JourneyRealizeHandler {
 
     }
 
-    public void stopDriving() throws ConnectException, ProceduralException {
+    public void stopDriving() throws ConnectException, ProceduralException, PMVPhysicalException {
+        try {
+            bluetooth.BTbroadcast();
+        } catch (Exception e) {
+            throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
+        }
+
+        arduino.stopDriving();
+
     }
 
     // Internal operations
