@@ -79,9 +79,24 @@ public class JourneyRealizeHandler {
     }
 
     // Input events from the unbonded Bluetooth channel
-    public void broadcastStationID(StationID stID) implements UnbondedBTSignal throws ConnectException {
-        stID.
+    public void broadcastStationID(String stID) throws ConnectException {
+        try {
+            arduino.setBTconnection();
+        } catch (Exception e) {
+            throw new ConnectException("Error al establecer la conexión Bluetooth: " + e.getMessage());
+        }
+
+        try {
+            bluetooth.BTbroadcast();
+        } catch (Exception e) {
+            throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
+        }
+
+        System.out.println("StationID transmitido: " + stID);
+
     }
+
+
 
     // Input events from the Arduino microcontroller channel
     public void startDriving() throws ConnectException, ProceduralException {
