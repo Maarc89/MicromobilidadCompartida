@@ -14,12 +14,14 @@ public class PMVehicle {
     private GeographicPoint location;
     private QRDecoder qr;
     private VehicleID id;
+    private int chargeLevel;
 
-    public PMVehicle(PMVState state, GeographicPoint location, QRDecoder qr, VehicleID id) {
+    public PMVehicle(PMVState state, GeographicPoint location, QRDecoder qr, VehicleID id, int chargeLevel) {
         this.state = state;
         this.location = location;
         this.qr = qr;
         this.id = id;
+        this.chargeLevel = chargeLevel;
     }
 
     // Getter methods

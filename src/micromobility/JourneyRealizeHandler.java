@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 
 public class JourneyRealizeHandler {
 
-
+    private GeographicPoint originalPoint;
     private QRDecoder qrdecoder;
     private UnbondedBTSignal bluetooth;
     private BufferedImage img;
@@ -52,9 +52,10 @@ public class JourneyRealizeHandler {
         server.checkPMVAvail(id);
 
         JourneyService s = new JourneyService();
+        // s'inicialitzen els dos
+        s.setServiceInit();
+        s.setOriginPoint();
 
-        s.setStartTime(LocalDateTime.now());
-        s.set
 
         bluetooth.BTbroadcast();
 
@@ -78,8 +79,8 @@ public class JourneyRealizeHandler {
     }
 
     // Input events from the unbonded Bluetooth channel
-    public void broadcastStationID(StationID stID) throws ConnectException {
-
+    public void broadcastStationID(StationID stID) implements UnbondedBTSignal throws ConnectException {
+        stID.
     }
 
     // Input events from the Arduino microcontroller channel
