@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 
 public class JourneyRealizeHandler {
 
+
     private GeographicPoint originalPoint;
     private QRDecoder qrdecoder;
     private UnbondedBTSignal bluetooth;
@@ -100,6 +101,24 @@ public class JourneyRealizeHandler {
 
     // Input events from the Arduino microcontroller channel
     public void startDriving() throws ConnectException, ProceduralException {
+
+        try {
+            bluetooth.BTbroadcast();
+        } catch (Exception e) {
+            throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
+        }
+        server.registerPairing();
+        pmVehicle.setNotAvailb();
+
+        try {
+            JourneyService s = new JourneyService();
+            pmVehicle.setUnderWay();
+            s.setInProgress(true);
+        } catch (Exception e) {
+            throw new ProceduralException("ERROR");
+        }
+
+
     }
 
     public void stopDriving() throws ConnectException, ProceduralException {

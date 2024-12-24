@@ -29,9 +29,14 @@ public class JourneyService {
     private int duration;                 // Duración del viaje en minutos
     private float avgSpeed;               // Velocidad promedio durante el viaje
     private BigDecimal amount;
+    private boolean inProgress;
 
     public void setInitHour(LocalTime initHour) {
         this.initHour = initHour;
+    }
+
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
     }
 
     public void setInitDate(LocalDate initDate) {
