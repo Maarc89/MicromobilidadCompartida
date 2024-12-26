@@ -28,7 +28,7 @@ public class JourneyService {
     private float distance;               // Distancia recorrida
     private int duration;                 // Duración del viaje en minutos
     private float avgSpeed;               // Velocidad promedio durante el viaje
-    private BigDecimal amount;
+    private float importe;
     private boolean inProgress;
 
     public void setInitHour(LocalTime initHour) {
@@ -47,8 +47,8 @@ public class JourneyService {
         this.originPoint = originPoint;
     }
 
-    public void setEndPoint(){
-        this.endPoint = endPoint;
+    public void setEndPoint(GeographicPoint gp){
+        this.endPoint = gp;
     }
 
     public void setEndHour(LocalTime endHour) {
@@ -60,9 +60,8 @@ public class JourneyService {
     }
 
 
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setImporte(float importe) {
+        this.importe = importe;
     }
 
     public void setAvgSpeed(float avgSpeed) {
@@ -101,7 +100,7 @@ public class JourneyService {
         this.distance = distance;
         this.duration = duration;
         this.avgSpeed = avgSpeed;
-        this.amount = amount;
+        this.importe = amount;
     }
 
     public GeographicPoint getEndPoint() {
@@ -159,25 +158,18 @@ public class JourneyService {
         return avgSpeed;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void calculateDuration() {
+    public int setDuration(LocalTime initHour, LocalTime endHour) {
         if (initHour != null && endHour != null) {
             Duration duration = Duration.between(initHour, endHour);
             this.duration = (int) duration.toMinutes();
         }
+        return duration;
     }
 
-    public void calculateAvgSpeed() {
-        if (duration > 0) {
-            this.avgSpeed = distance / duration;
-        }
+    public void setAvgSpeed(float distance,float duration) {
+            this.avgSpeed = distance / duration*60;
     }
 
-    public void calculateAmount(float rate) {
-        this.amount = BigDecimal.valueOf(distance * rate);
-    }
+
 
 }
