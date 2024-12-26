@@ -9,9 +9,11 @@ import services.smartfeatures.ArduinoMicroController;
 import services.smartfeatures.QRDecoder;
 import services.smartfeatures.UnbondedBTSignal;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalTime;
 
 public class JourneyRealizeHandler {
 
@@ -26,6 +28,7 @@ public class JourneyRealizeHandler {
     private StationID orgStatId; //origin station id
     private PMVehicle pmVehicle; // primary mobility vehicle
 
+    private float importe;
 
     public JourneyRealizeHandler(QRDecoder qrdecoder, StationID orgStatId, PMVehicle pmVehicle, ArduinoMicroController arduino, Server server, BufferedImage img, UnbondedBTSignal bluetooth) {
         this.qrdecoder = qrdecoder;
@@ -137,10 +140,44 @@ public class JourneyRealizeHandler {
 
     // Internal operations
     private void calculateValues(GeographicPoint gP, LocalDateTime date) {
+        // duración, distancia y velocidad promedio.
+
+        if (pmVehicle == null) {
+            throw new IllegalArgumentException("Vehicle no disponible");
+        }
+        //distancia
+        GeographicPoint vehicleLocation = pmVehicle.getLocation();
+        float distance = vehicleLocation.calculateDistance(gP);
+        //duracio
+        JourneyService s = new JourneyService();
+        LocalTime initTime = s.getInitHour();
+        if (initTime == null) {
+            throw new IllegalStateException("El servicio no se ha inicializado correctamente.");
+        }
+        s.setEndHour(date.toLocalTime());
+        LocalTime endTime = date.toLocalTime();
+        //paquete time de java
+        Duration duration = Duration.between(initTime, endTime);
+        float minutes = duration.toMinutes();
+        //velocitat mitja
+        float avgSpeed = distance/minutes*60;
+
     }
 
-    private void calculateImport(float distance, int duration, float averageSpeed, LocalDateTime date) {
 
+    private void calculateImport(float distance, int duration, float averageSpeed, LocalDateTime date) {
+        float costoKm = 0.5f;
+        float costoMinuto = 0.2f;
+
+        //(distancia * costxKM) + (duracio * costXMinut)
+        importe = (distance * costoKm + duration * costoMinuto);
+
+        // arrodonim a 2 decimals perls centims
+        importe = Math.round(importe * 100) / 100f;
+    }
+
+    public float getImporte() {
+        return importe;
     }
 
     // Setter methods for injecting dependencies

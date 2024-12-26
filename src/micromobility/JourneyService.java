@@ -13,12 +13,12 @@ import java.time.LocalTime;
 public class JourneyService {
 
     // ATRIBUTS a tenir en compte
-    private final UserAccount user;       // Usuario que realiza el viaje
-    private final VehicleID vehicle;      // Vehículo utilizado en el viaje
-    private final StationID startStation; // Estación de inicio
+    private UserAccount user;       // Usuario que realiza el viaje
+    private VehicleID vehicle;      // Vehículo utilizado en el viaje
+    private StationID startStation; // Estación de inicio
 
     // ATRIBUTS CLASSE del JPG
-    private final int serviceID;           // Identificador del viaje
+    private int serviceID;           // Identificador del viaje
     private GeographicPoint originPoint; // Ubicación de inicio
     private GeographicPoint endPoint; // Ubicación de finalización
     private LocalTime initHour;      // Hora de inicio del servicio
@@ -77,13 +77,17 @@ public class JourneyService {
         this.distance = distance;
     }
 
-    public JourneyService(int journeyID, UserAccount user, VehicleID vehicle, StationID startStation, GeographicPoint originPoint, GeographicPoint endPoint) {
-        serviceID = journeyID;
+    public JourneyService(int serviceID, UserAccount user, VehicleID vehicle, StationID startStation, GeographicPoint originPoint, GeographicPoint endPoint) {
+        this.serviceID = serviceID;
         this.user = user;
         this.vehicle = vehicle;
         this.startStation = startStation;
         this.originPoint = originPoint;
         this.endPoint = endPoint;
+    }
+
+    public JourneyService(){
+
     }
 
     // The setter methods to be used
