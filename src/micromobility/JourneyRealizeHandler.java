@@ -29,7 +29,6 @@ public class JourneyRealizeHandler {
     private StationID CurrentStationID; //current station id
     private JourneyService journeyService;
 
-
     private QRDecoder qrdecoder;
     private UnbondedBTSignal bluetooth;
     private BufferedImage img;

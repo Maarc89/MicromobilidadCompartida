@@ -4,66 +4,87 @@ import data.GeographicPoint;
 import data.StationID;
 import data.UserAccount;
 import data.VehicleID;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class JourneyServiceTest {
 
     private JourneyService journeyService;
-    private UserAccount user;
-    private VehicleID vehicle;
-    private StationID station;
-    private GeographicPoint location;
 
     @BeforeEach
     void setUp() {
-        user = new UserAccount("ABC123", "Abcde1");
-        vehicle = new VehicleID("VH45678");
-        station = new StationID("ST8901");
-        location = new GeographicPoint(10.0F, 20.0F);
+        UserAccount user = new UserAccount("USR123", "Abmaria1"); // Mock user
+        VehicleID vehicle = new VehicleID("VH12345"); // Mock vehicle
+        StationID startStation = new StationID("ST1234");
+        GeographicPoint originPoint = new GeographicPoint(40.2f, -74.7f);
 
-        journeyService = new JourneyService(1, user, vehicle, station, location);
+        journeyService = new JourneyService(user, vehicle, LocalDate.now(), LocalTime.of(10, 0), originPoint, startStation);
     }
 
     @Test
-    void testInitialization() {
-        assertEquals(1, journeyService.getServiceID());
-        assertEquals(user, journeyService.getUser());
-        assertEquals(vehicle, journeyService.getVehicle());
-        assertEquals(station, journeyService.getStartStation());
-        assertEquals(location, journeyService.getStartLocation());
-        assertNull(journeyService.getStartTime());
-        assertNull(journeyService.getEndTime());
-        assertEquals(0, journeyService.getDistance());
-        assertEquals(0, journeyService.getDuration());
-        assertEquals(0, journeyService.getAvgSpeed());
-        assertNull(journeyService.getAmount());
-        assertFalse(journeyService.isInProgress());
+    void testSetAndGetStartStation() {
+        StationID newStartStation = new StationID("ST1234");
+        journeyService.setStartStation(newStartStation);
+        assertEquals(newStartStation, journeyService.getStartStation());
+    }
+
+    @Test
+    void testSetDuration() {
+        LocalTime start = LocalTime.of(10, 0);
+        LocalTime end = LocalTime.of(10, 30);
+        int duration = journeyService.setDuration(start, end);
+        assertEquals(30, duration);
+    }
+
+    @Test
+    void testSetDistance() {
+        journeyService.setDistance(5.0f);
+        assertEquals(5.0f, journeyService.getDistance());
+    }
+
+    @Test
+    void testSetAvgSpeed() {
+        journeyService.setAvgSpeed(10.0f, 30.0f);
+        assertEquals(20.0f, journeyService.getAvgSpeed(), 0.01f);
     }
 
     @Test
     void testSetServiceInit() {
-        LocalDateTime startTime = LocalDateTime.now();
-        journeyService.setServiceInit(startTime);
-        assertEquals(startTime, journeyService.getStartTime());
+        journeyService.setServiceInit();
+        assertEquals(LocalDate.now(), journeyService.getInitDate());
+        assertNotNull(journeyService.getInitHour());
     }
 
     @Test
     void testSetServiceFinish() {
-        LocalDateTime endTime = LocalDateTime.now();
-        journeyService.setServiceFinish(endTime, 15.5f, 30, 31.0f, BigDecimal.valueOf(20.5));
+        LocalTime endTime = LocalTime.of(11, 0);
+        journeyService.setServiceFinish(endTime, 10.0f, 60, 10.0f, BigDecimal.valueOf(15.0));
 
-        assertEquals(endTime, journeyService.getEndTime());
-        assertEquals(15.5f, journeyService.getDistance());
-        assertEquals(30, journeyService.getDuration());
-        assertEquals(31.0f, journeyService.getAvgSpeed());
-        assertEquals(BigDecimal.valueOf(20.5), journeyService.getAmount());
+        assertEquals(endTime, journeyService.getEndHour());
+        assertEquals(10.0f, journeyService.getDistance());
+        assertEquals(60, journeyService.getDuration());
+        assertEquals(10.0f, journeyService.getAvgSpeed(), 0.01f);
+        assertEquals(BigDecimal.valueOf(15.0), journeyService.getImporte());
+    }
+
+    @Test
+    void testSetAndGetOriginPoint() {
+        GeographicPoint newPoint = new GeographicPoint(41.3f, 2.1f); // Mock point
+        journeyService.setOriginPoint(newPoint);
+        assertEquals(newPoint, journeyService.getOriginPoint());
+    }
+
+    @Test
+    void testSetAndGetEndPoint() {
+        GeographicPoint endPoint = new GeographicPoint(42.3f, -71.0f); // Mock point
+        journeyService.setEndPoint(endPoint);
+        assertEquals(endPoint, journeyService.getEndPoint());
     }
 
     @Test
@@ -73,33 +94,5 @@ class JourneyServiceTest {
 
         journeyService.setInProgress(false);
         assertFalse(journeyService.isInProgress());
-    }
-
-    @Test
-    void testCalculateDuration() {
-        LocalDateTime startTime = LocalDateTime.now();
-        LocalDateTime endTime = startTime.plusMinutes(45);
-
-        journeyService.setServiceInit(startTime);
-        journeyService.setServiceFinish(endTime, 0, 0, 0, null);
-        journeyService.calculateDuration();
-
-        assertEquals(45, journeyService.getDuration());
-    }
-
-    @Test
-    void testCalculateAvgSpeed() {
-        journeyService.setServiceFinish(LocalDateTime.now(), 30.0f, 60, 0, null);
-        journeyService.calculateAvgSpeed();
-
-        assertEquals(0.5f, journeyService.getAvgSpeed());
-    }
-
-    @Test
-    void testCalculateAmount() {
-        journeyService.setServiceFinish(LocalDateTime.now(), 10.0f, 0, 0, null);
-        journeyService.calculateAmount(2.5f);
-
-        assertEquals(BigDecimal.valueOf(25.0), journeyService.getAmount());
     }
 }
