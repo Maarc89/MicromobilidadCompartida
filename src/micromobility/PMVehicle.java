@@ -10,11 +10,11 @@ import services.smartfeatures.QRDecoder;
 public class PMVehicle {
 
     // The class members
-    private PMVState state;
     private GeographicPoint location;
     private QRDecoder qr;
     private VehicleID id;
     private int chargeLevel;
+    private PMVState state;
 
     public PMVehicle(PMVState state, GeographicPoint location, QRDecoder qr, VehicleID id, int chargeLevel) {
         this.state = state;

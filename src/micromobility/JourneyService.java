@@ -38,9 +38,9 @@ public class JourneyService {
     private float distance;               // Distancia recorrida
     private int duration;                 // Duración del viaje en minutos
     private float avgSpeed;               // Velocidad promedio durante el viaje
-    private BigDecimal importe;
+    private BigDecimal amount;
     private boolean inProgress;
-
+  
     public void setInitHour(LocalTime initHour) {
         this.initHour = initHour;
     }
@@ -111,13 +111,6 @@ public class JourneyService {
         this.initDate = LocalDate.now();
     }
 
-    public void setServiceFinish(LocalTime endTime, float distance, int duration, float avgSpeed, BigDecimal amount) {
-        this.endHour = endTime;
-        this.distance = distance;
-        this.duration = duration;
-        this.avgSpeed = avgSpeed;
-        this.importe = amount;
-    }
 
     public GeographicPoint getEndPoint() {
         return endPoint;
@@ -126,8 +119,6 @@ public class JourneyService {
     public BigDecimal getImporte() {
         return importe;
     }
-
-
 
     // Getters
     public int getServiceID() {
@@ -181,9 +172,32 @@ public class JourneyService {
     public int setDuration(LocalTime initHour, LocalTime endHour) {
         if (initHour != null && endHour != null) {
             Duration duration = Duration.between(initHour, endHour);
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public boolean isInProgress() { return inProgress; }
+
+    // The setter methods to be used
+
+    public void setServiceFinish(LocalDateTime endTime, float distance, int duration, float avgSpeed, BigDecimal amount) {
+        this.endTime = endTime;
+        this.distance = distance;
+        this.duration = duration;
+        this.avgSpeed = avgSpeed;
+        this.amount = amount;
+    }
+
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
+    }
+
+    public void calculateDuration() {
+        if (startTime != null && endTime != null) {
+            Duration duration = Duration.between(startTime, endTime);
             this.duration = (int) duration.toMinutes();
         }
-        return duration;
     }
 
     public void setAvgSpeed(float distance,float duration) {
