@@ -70,9 +70,7 @@ public class JourneyService {
     }
 
 
-    public void setImporte(BigDecimal importe) {
-        this.importe = importe;
-    }
+
 
     public void setAvgSpeed(float avgSpeed) {
         this.avgSpeed = avgSpeed;

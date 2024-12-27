@@ -104,13 +104,16 @@ public class JourneyRealizeHandler {
         //serviceID
         int numeroAleatorio = (int) (Math.random() * 100) + 1;
         this.journeyService.setServiceID(numeroAleatorio);
-        //punt 5
-        server.stopPairing(this.journeyService.getUser(), this.journeyService.getVehicle(),this.journeyService.getEndStation(),this.journeyService.getUser(),this.journeyService.getUser(),
-                this.journeyService.getUser(),this.journeyService.getUser(),this.journeyService.getUser(),);
-        //punt 6
 
-
-
+        server.stopPairing(this.journeyService.getUser(),
+                this.journeyService.getVehicle(),
+                this.journeyService.getEndStation(),
+                this.journeyService.get,
+                LocalDateTime.now(),
+                this.journeyService.getAvgSpeed(),
+                this.journeyService.getDistance(),
+                this.journeyService.getDuration(),
+                this.journeyService.getImporte());
 
         pmVehicle.setAvailb();
         pmVehicle.setLocation(this.journeyService.getEndPoint());
@@ -119,33 +122,10 @@ public class JourneyRealizeHandler {
         this.journeyService.setInProgress(false);
         arduino.undoBTconnection();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Mostrar confirmación
         System.out.println("Vehículo desemparejado correctamente");
-        System.out.println("Importe total: " + journeyService.getI());
+        System.out.println("Importe total: " + journeyService.getImporte());
         System.out.println("Escoger método de pago");
-
-        // Bloquear vehículo (simulando luces verdes o alertas)
-        pmVehicle.lock();
-        System.out.println("El vehículo ha sido bloqueado. Luz verde activada.");
-        System.out.println("Vehiculo desemparejado correctamente");
-        //System.out.println("Importe total: " + getImporte());
-        System.out.println("Escoger metodo de pago");
     }
 
     // Input events from the unbonded Bluetooth channel
