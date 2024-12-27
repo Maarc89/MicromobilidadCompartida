@@ -8,6 +8,7 @@ public class StationID {
     // y solo podrà contener letras mayúsculas (2 en concreto) y números (4 en concreto).
 
     private final String stationID;
+    private GeographicPoint gp;
 
     public StationID(String stationID) {
         if (stationID == null) {
@@ -21,6 +22,14 @@ public class StationID {
 
     private boolean isValid(String stationID) {
         return stationID.matches("^[A-Z]{2}\\d{4}$"); // 2 letras mayúsculas + 4 números
+    }
+
+    public GeographicPoint getLocation(){
+        return this.gp;
+    }
+
+    public void setLocation(GeographicPoint gP) {
+        this.gp = gP;
     }
 
     // Getter
