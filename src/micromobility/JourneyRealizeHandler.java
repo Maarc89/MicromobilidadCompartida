@@ -9,6 +9,7 @@ import services.smartfeatures.ArduinoMicroController;
 import services.smartfeatures.QRDecoder;
 import services.smartfeatures.UnbondedBTSignal;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +19,8 @@ import java.time.LocalTime;
 
 public class JourneyRealizeHandler {
 
+
+    private JourneyService journeyService;
 
     private GeographicPoint originalPoint;
     private QRDecoder qrdecoder;
@@ -29,7 +32,7 @@ public class JourneyRealizeHandler {
     private StationID orgStatId; //origin station id
     private PMVehicle pmVehicle; // primary mobility vehicle
 
-    private float importe;
+    private BigDecimal importe;
     private float duration;
     private float distance;
     private float avgSpeed;
@@ -61,6 +64,7 @@ public class JourneyRealizeHandler {
         server.checkPMVAvail(id);
 
         JourneyService s = new JourneyService();
+
         // s'inicialitzen els dos
         s.setServiceInit();
         s.setOriginPoint();
@@ -68,7 +72,7 @@ public class JourneyRealizeHandler {
 
         bluetooth.BTbroadcast();
 
-
+        this.journeyService = s;
         System.out.println("Vehicle Pairing Completed");
         System.out.println("You can start driving");
     }
@@ -76,7 +80,7 @@ public class JourneyRealizeHandler {
 
     public boolean isPMVehicleinZone() {
 
-        //GeographicPoint stationLocation = orgStatId.ge
+        //GeographicPoint stationLocation = orgStatId.g
         GeographicPoint vehicleLocation = pmVehicle.getLocation();
 
 
@@ -86,26 +90,34 @@ public class JourneyRealizeHandler {
     public void unPairVehicle() throws ConnectException, InvalidPairingArgsException,
             PairingNotFoundException, ProceduralException {
 
-        JourneyService s = new JourneyService();
-        // Verificar las precondiciones
-        if (pmVehicle == null || !pmVehicle.isUnderWay()) {
-            throw new ProceduralException("El vehículo no está en estado UnderWay o no está definido.");
-        }
-        if (!s.inProgress()) {
-            throw new ProceduralException("El trayecto no está en progreso.");
-        }
-
 
         // Actualizar atributos en JourneyService
-        s.setEndPoint(pmVehicle.getLocation()); // Suponiendo que se obtiene la ubicación actual
-        s.setEndDate(LocalDate.now());
-        s.setEndHour(LocalTime.now());
+        this.journeyService.setEndPoint(pmVehicle.getLocation()); // Suponiendo que se obtiene la ubicación actual
+        this.journeyService.setEndDate(LocalDate.now());
+        this.journeyService.setEndHour(LocalTime.now());
         // calcular y modificar duración, distancia y velocidad promedio
         calculateValues(pmVehicle.getLocation(),LocalDateTime.now());
         // calcular y modificar el importe
-        calculateImport(s.getDistance(), s.getDuration(), s.getAvgSpeed(), LocalDateTime.now());
-        s.setImporte(getImporte());
+        calculateImport(this.journeyService.getDistance(), this.journeyService.getDuration(), this.journeyService.getAvgSpeed(), LocalDateTime.now());
+        //this.journeyService.setImporte(getImporte());
         // METODO PARA PAGO
+        //serviceID
+        int numeroAleatorio = (int) (Math.random() * 100) + 1;
+        this.journeyService.setServiceID(numeroAleatorio);
+        //punt 5
+        server.stopPairing(this.journeyService.getUser(), this.journeyService.getVehicle(),this.journeyService.getEndStation(),this.journeyService.getUser(),this.journeyService.getUser(),
+                this.journeyService.getUser(),this.journeyService.getUser(),this.journeyService.getUser(),);
+        //punt 6
+
+
+
+
+        pmVehicle.setAvailb();
+        pmVehicle.setLocation(this.journeyService.getEndPoint());
+        server.registerLocation(this.journeyService.getVehicle(), this.journeyService.getEndStation());
+        server.unPairRegisterService(this.journeyService);
+        this.journeyService.setInProgress(false);
+        arduino.undoBTconnection();
 
 
 
@@ -116,34 +128,23 @@ public class JourneyRealizeHandler {
 
 
 
-        s.calculateDuration();
-        s.setDistance(pmVehicle.calculateDistance(s.getoriginPoint(), s.getEndPoint())); // Método hipotético
-        s.calculateAvgSpeed();
 
-        // Calcular el importe
-        float distance = s.getDistance();
-        int duration = s.getDuration();
-        float averageSpeed = s.getAvgSpeed();
-        LocalDateTime date = LocalDateTime.now(); // Puedes usar un valor más preciso si lo tienes
-        calculateImport(distance, duration, averageSpeed, date);
 
-        // Actualizar el estado del vehículo
-        pmVehicle.setAvailable(true);
-        pmVehicle.updateLocation(s.getEndPoint()); // Método para actualizar ubicación
 
-        // Modificar inProgress
-        s.setInProgress(false);
+
+
+
 
         // Mostrar confirmación
         System.out.println("Vehículo desemparejado correctamente");
-        System.out.println("Importe total: " + s.getAmount());
+        System.out.println("Importe total: " + journeyService.getI());
         System.out.println("Escoger método de pago");
 
         // Bloquear vehículo (simulando luces verdes o alertas)
         pmVehicle.lock();
         System.out.println("El vehículo ha sido bloqueado. Luz verde activada.");
         System.out.println("Vehiculo desemparejado correctamente");
-        System.out.println("Importe total: " + getImporte());
+        //System.out.println("Importe total: " + getImporte());
         System.out.println("Escoger metodo de pago");
     }
 
@@ -205,23 +206,23 @@ public class JourneyRealizeHandler {
     // Internal operations
     private void calculateValues(GeographicPoint gP, LocalDateTime date) {
         // duración, distancia y velocidad promedio.
-        JourneyService s = new JourneyService();
+
         if (pmVehicle == null) {
             throw new IllegalArgumentException("Vehicle no disponible");
         }
         //distancia
         GeographicPoint vehicleLocation = pmVehicle.getLocation();
         float distance = vehicleLocation.calculateDistance(gP);
-        s.setDistance(distance);
+        this.journeyService.setDistance(distance);
 
         //duracio
-        LocalTime initTime = s.getInitHour();
-        s.setEndHour(date.toLocalTime());
+        LocalTime initTime = this.journeyService.getInitHour();
+        this.journeyService.setEndHour(date.toLocalTime());
         LocalTime endTime = date.toLocalTime();
-        int minutes = s.setDuration(initTime,endTime);
+        int minutes = this.journeyService.setDuration(initTime,endTime);
 
         //velocitat mitja
-        s.setAvgSpeed(distance, minutes);
+        this.journeyService.setAvgSpeed(distance, minutes);
     }
 
 
@@ -230,16 +231,15 @@ public class JourneyRealizeHandler {
         float costoMinuto = 0.2f;
 
         //(distancia * costxKM) + (duracio * costXMinut)
-        this.importe = (distance * costoKm + duration * costoMinuto);
-
+        float importe = (distance * costoKm + duration * costoMinuto);
         // arrodonim a 2 decimals perls centims
-        this.importe = Math.round(importe * 100) / 100f;
+        importe = Math.round(importe * 100) / 100f;
+        BigDecimal amount = new BigDecimal(importe);
+        journeyService.setImporte(amount);
 
     }
 
-    public float getImporte() {
-        return this.importe;
-    }
+
 
 // Setter methods for injecting dependencies
 }

@@ -17,6 +17,16 @@ public class JourneyService {
     private VehicleID vehicle;      // Vehículo utilizado en el viaje
     private StationID startStation; // Estación de inicio
 
+    public StationID getEndStation() {
+        return endStation;
+    }
+
+    public void setEndStation(StationID endStation) {
+        this.endStation = endStation;
+    }
+
+    private StationID endStation; // Estación de final
+
     // ATRIBUTS CLASSE del JPG
     private int serviceID;           // Identificador del viaje
     private GeographicPoint originPoint; // Ubicación de inicio
@@ -28,7 +38,7 @@ public class JourneyService {
     private float distance;               // Distancia recorrida
     private int duration;                 // Duración del viaje en minutos
     private float avgSpeed;               // Velocidad promedio durante el viaje
-    private float importe;
+    private BigDecimal importe;
     private boolean inProgress;
 
     public void setInitHour(LocalTime initHour) {
@@ -60,7 +70,7 @@ public class JourneyService {
     }
 
 
-    public void setImporte(float importe) {
+    public void setImporte(BigDecimal importe) {
         this.importe = importe;
     }
 
@@ -74,6 +84,14 @@ public class JourneyService {
 
     public void setDistance(float distance) {
         this.distance = distance;
+    }
+
+    public void setServiceID(int id){
+        this.serviceID = id;
+    }
+
+    public void setImporte(BigDecimal importe){
+        this.importe = importe;
     }
 
     public JourneyService(int serviceID, UserAccount user, VehicleID vehicle, StationID startStation, GeographicPoint originPoint, GeographicPoint endPoint) {
@@ -105,6 +123,10 @@ public class JourneyService {
 
     public GeographicPoint getEndPoint() {
         return endPoint;
+    }
+
+    public BigDecimal getImporte() {
+        return importe;
     }
 
 
