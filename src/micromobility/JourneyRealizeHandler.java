@@ -2,6 +2,7 @@ package micromobility;
 
 import data.GeographicPoint;
 import data.StationID;
+import data.UserAccount;
 import data.VehicleID;
 import exceptions.*;
 import services.Server;
@@ -10,7 +11,6 @@ import services.smartfeatures.QRDecoder;
 import services.smartfeatures.UnbondedBTSignal;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -19,28 +19,27 @@ import java.time.LocalTime;
 
 public class JourneyRealizeHandler {
 
+    private static final float COST_PER_KM = 0.5f;
+    private static final float COST_PER_MINUTE = 0.2f;
 
+    private UserAccount user;
+    private PMVehicle pmVehicle; // primary mobility vehicle
+    private StationID originStationId; //origin station id
+    private StationID endStationId; //origin station id
+    private StationID CurrentStationID; //current station id
     private JourneyService journeyService;
 
-    private GeographicPoint originalPoint;
+
     private QRDecoder qrdecoder;
     private UnbondedBTSignal bluetooth;
     private BufferedImage img;
     private Server server;
     private ArduinoMicroController arduino;
 
-    private StationID orgStatId; //origin station id
-    private PMVehicle pmVehicle; // primary mobility vehicle
 
-    private BigDecimal importe;
-    private float duration;
-    private float distance;
-    private float avgSpeed;
-
-
-    public JourneyRealizeHandler(QRDecoder qrdecoder, StationID orgStatId, PMVehicle pmVehicle, ArduinoMicroController arduino, Server server, BufferedImage img, UnbondedBTSignal bluetooth) {
+    public JourneyRealizeHandler(QRDecoder qrdecoder, StationID originStationId, PMVehicle pmVehicle, ArduinoMicroController arduino, Server server, BufferedImage img, UnbondedBTSignal bluetooth) {
         this.qrdecoder = qrdecoder;
-        this.orgStatId = orgStatId;
+        this.originStationId = originStationId;
         this.pmVehicle = pmVehicle;
         this.arduino = arduino;
         this.server = server;
@@ -48,78 +47,83 @@ public class JourneyRealizeHandler {
         this.bluetooth = bluetooth;
     }
 
+    // Input events from the unbonded Bluetooth channel
+    public void broadcastStationID(String stID) throws ConnectException {
+        bluetooth.BTbroadcast();
+        System.out.println("StationID transmitido: " + stID);
+        this.CurrentStationID = new StationID(stID);
+    }
 
     // User interface input events
     public void scanQR() throws ConnectException, InvalidPairingArgsException,
             CorruptedImgException, PMVNotAvailException,
             ProceduralException {
 
-
-        if (orgStatId == null || !isPMVehicleinZone()) {
-            throw new ProceduralException("La estacion o el vehiculo no estan correctamente detectados");
-        }
-
-
         VehicleID id = qrdecoder.getVehicleID(img);
         server.checkPMVAvail(id);
+        LocalDateTime time = LocalDateTime.now();
+        JourneyService s = new JourneyService(null, id, time.toLocalDate(),
+                time.toLocalTime(), null, null);
+        journeyService = s;
+        //s.setServiceInit(); No fem un serviceInit perque ja esta inicialitzat dintre del time/JourneyService
+        setStation(CurrentStationID, true);
 
-        JourneyService s = new JourneyService();
-
-        // s'inicialitzen els dos
-        s.setServiceInit();
-        s.setOriginPoint();
-
-
-        bluetooth.BTbroadcast();
-
-        this.journeyService = s;
+        arduino.setBTconnection();
+        pmVehicle.setNotAvailb();
+        server.registerPairing(user, id, originStationId, journeyService.getOriginPoint(), time);
+        server.setPairing(user, id, originStationId, journeyService.getOriginPoint(), time);
         System.out.println("Vehicle Pairing Completed");
         System.out.println("You can start driving");
     }
 
 
-    public boolean isPMVehicleinZone() {
+    // Input events from the Arduino microcontroller channel
+    public void startDriving() throws ConnectException, ProceduralException {
+        pmVehicle.setUnderWay();
+        journeyService.setInProgress(true);
+        System.out.println("Pantalla de trayecto en curso");
+    }
 
-        //GeographicPoint stationLocation = orgStatId.g
-        GeographicPoint vehicleLocation = pmVehicle.getLocation();
-
-
-        return true;
+    public void stopDriving() throws ConnectException, ProceduralException {
+        System.out.println("Pantalla de vehículo detenido");
     }
 
     public void unPairVehicle() throws ConnectException, InvalidPairingArgsException,
             PairingNotFoundException, ProceduralException {
 
+        //BROADCAST I PILLAREM LA ENDSTATION
+        setStation(CurrentStationID, false);
+        journeyService.setEndDate(LocalDate.now()); // em de setejar la data pq no tenim LocalDateTime
+        GeographicPoint endPoint = pmVehicle.getLocation();
+        LocalDateTime now = LocalDateTime.now();
 
-        // Actualizar atributos en JourneyService
-        this.journeyService.setEndPoint(pmVehicle.getLocation()); // Suponiendo que se obtiene la ubicación actual
-        this.journeyService.setEndDate(LocalDate.now());
-        this.journeyService.setEndHour(LocalTime.now());
-        // calcular y modificar duración, distancia y velocidad promedio
-        calculateValues(pmVehicle.getLocation(),LocalDateTime.now());
-        // calcular y modificar el importe
-        calculateImport(this.journeyService.getDistance(), this.journeyService.getDuration(), this.journeyService.getAvgSpeed(), LocalDateTime.now());
-        //this.journeyService.setImporte(getImporte());
+        // CALCULAR Y SETEJAR distancia, duracio, avgSpeed, import
+        calculateValues(endPoint, now);
+        calculateImport(journeyService.getDistance(), journeyService.getDuration(),
+                journeyService.getAvgSpeed(), LocalDateTime.now()); // li paso aquests dos parametres perquè AL ENUNCIAT
+        // funció esta inicialitzada pero no els utlitzo per a res
+
         // METODO PARA PAGO
+
         //serviceID
         int numeroAleatorio = (int) (Math.random() * 100) + 1;
-        this.journeyService.setServiceID(numeroAleatorio);
+        journeyService.setServiceID(numeroAleatorio);
 
-        server.stopPairing(this.journeyService.getUser(),
-                this.journeyService.getVehicle(),
-                this.journeyService.getEndStation(),
-                this.journeyService.get,
+        server.stopPairing(journeyService.getUser(),
+                journeyService.getVehicle(),
+                endStationId,
+                journeyService.getEndPoint(),
                 LocalDateTime.now(),
                 this.journeyService.getAvgSpeed(),
                 this.journeyService.getDistance(),
                 this.journeyService.getDuration(),
                 this.journeyService.getImporte());
 
+        server.unPairRegisterService(journeyService);
+        server.registerLocation(journeyService.getVehicle(), endStationId);
         pmVehicle.setAvailb();
-        pmVehicle.setLocation(this.journeyService.getEndPoint());
-        server.registerLocation(this.journeyService.getVehicle(), this.journeyService.getEndStation());
-        server.unPairRegisterService(this.journeyService);
-        this.journeyService.setInProgress(false);
+        pmVehicle.setLocation(journeyService.getEndPoint());
+        journeyService.setInProgress(false);
         arduino.undoBTconnection();
 
         // Mostrar confirmación
@@ -128,98 +132,50 @@ public class JourneyRealizeHandler {
         System.out.println("Escoger método de pago");
     }
 
-    // Input events from the unbonded Bluetooth channel
-    public void broadcastStationID(String stID) throws ConnectException {
-        try {
-            arduino.setBTconnection();
-        } catch (Exception e) {
-            throw new ConnectException("Error al establecer la conexión Bluetooth: " + e.getMessage());
-        }
-
-        try {
-            bluetooth.BTbroadcast();
-        } catch (Exception e) {
-            throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
-        }
-
-        System.out.println("StationID transmitido: " + stID);
-
-    }
-
-
-    // Input events from the Arduino microcontroller channel
-    public void startDriving() throws ConnectException, ProceduralException {
-
-        try {
-            bluetooth.BTbroadcast();
-        } catch (Exception e) {
-            throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
-        }
-
-        arduino.startDriving();
-
-        server.registerPairing();
-        pmVehicle.setNotAvailb();
-
-        try {
-            JourneyService s = new JourneyService();
-            pmVehicle.setUnderWay();
-            s.setInProgress(true);
-        } catch (Exception e) {
-            throw new ProceduralException("ERROR");
-        }
-
-
-    }
-
-    public void stopDriving() throws ConnectException, ProceduralException, PMVPhysicalException {
-        try {
-            bluetooth.BTbroadcast();
-        } catch (Exception e) {
-            throw new ConnectException("Error durante la transmisión del ID por Bluetooth: " + e.getMessage());
-        }
-
-        arduino.stopDriving();
-
-    }
-
-    // Internal operations
     private void calculateValues(GeographicPoint gP, LocalDateTime date) {
-        // duración, distancia y velocidad promedio.
-
         if (pmVehicle == null) {
             throw new IllegalArgumentException("Vehicle no disponible");
         }
-        //distancia
-        GeographicPoint vehicleLocation = pmVehicle.getLocation();
-        float distance = vehicleLocation.calculateDistance(gP);
-        this.journeyService.setDistance(distance);
-
-        //duracio
-        LocalTime initTime = this.journeyService.getInitHour();
-        this.journeyService.setEndHour(date.toLocalTime());
-        LocalTime endTime = date.toLocalTime();
-        int minutes = this.journeyService.setDuration(initTime,endTime);
-
-        //velocitat mitja
-        this.journeyService.setAvgSpeed(distance, minutes);
+        float distance = calculateDistance(gP);
+        int minutes = calculateDuration(date);
+        calculateAvgSpeed(distance, minutes);
     }
 
+    private float calculateDistance(GeographicPoint gP) {
+        float distance = journeyService.getOriginPoint().calculateDistance(gP);
+        journeyService.setDistance(distance);
+        return distance;
+    }
+
+    private int calculateDuration(LocalDateTime date) {
+        LocalTime initTime = journeyService.getInitHour();
+        LocalTime endTime = date.toLocalTime();
+        journeyService.setEndHour(endTime);
+        return journeyService.setDuration(initTime, endTime);
+    }
+
+    private void calculateAvgSpeed(float distance, int minutes) {
+        journeyService.setAvgSpeed(distance, minutes);
+    }
 
     private void calculateImport(float distance, int duration, float averageSpeed, LocalDateTime date) {
-        float costoKm = 0.5f;
-        float costoMinuto = 0.2f;
-
-        //(distancia * costxKM) + (duracio * costXMinut)
-        float importe = (distance * costoKm + duration * costoMinuto);
-        // arrodonim a 2 decimals perls centims
+        float importe = (distance * COST_PER_KM) + (duration * COST_PER_MINUTE);
         importe = Math.round(importe * 100) / 100f;
         BigDecimal amount = new BigDecimal(importe);
         journeyService.setImporte(amount);
-
     }
 
 
-
 // Setter methods for injecting dependencies
+
+    public void setStation(StationID station, boolean isOrigin) {
+        if (isOrigin) {
+            this.originStationId = station;
+            journeyService.setOriginPoint(station.getLocation());
+        } else {
+            this.endStationId = station;
+            journeyService.setEndPoint(station.getLocation());
+        }
+    }
+
 }

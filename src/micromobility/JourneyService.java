@@ -8,6 +8,7 @@ import data.VehicleID;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class JourneyService {
@@ -16,93 +17,89 @@ public class JourneyService {
     private UserAccount user;       // Usuario que realiza el viaje
     private VehicleID vehicle;      // Vehículo utilizado en el viaje
     private StationID startStation; // Estación de inicio
-
-    public StationID getEndStation() {
-        return endStation;
-    }
-
-    public void setEndStation(StationID endStation) {
-        this.endStation = endStation;
-    }
-
     private StationID endStation; // Estación de final
 
     // ATRIBUTS CLASSE del JPG
-    private int serviceID;           // Identificador del viaje
-    private GeographicPoint originPoint; // Ubicación de inicio
-    private GeographicPoint endPoint; // Ubicación de finalización
-    private LocalTime initHour;      // Hora de inicio del servicio
-    private LocalTime endHour;        // Hora de finalización del servicio
-    private LocalDate initDate;      // Fecha de inicio del servicio
-    private LocalDate endDate;        // Fecha de finalización del servicio
-    private float distance;               // Distancia recorrida
     private int duration;                 // Duración del viaje en minutos
+    private float distance;               // Distancia recorrida
     private float avgSpeed;               // Velocidad promedio durante el viaje
-    private BigDecimal amount;
+    private GeographicPoint originPoint; // Ubicación de inicio
+    private LocalDate initDate;      // Fecha de inicio del servicio
+    private LocalTime initHour;      // Hora de inicio del servicio
+    private GeographicPoint endPoint; // Ubicación de finalización
+    private LocalDate endDate;        // Fecha de finalización del servicio
+    private LocalTime endHour;        // Hora de finalización del servicio
+    private BigDecimal importe;       // Import final
+    private int serviceID;           // Identificador del viaje
     private boolean inProgress;
-  
-    public void setInitHour(LocalTime initHour) {
-        this.initHour = initHour;
-    }
 
-    public void setInProgress(boolean inProgress) {
-        this.inProgress = inProgress;
-    }
 
-    public void setInitDate(LocalDate initDate) {
+    public JourneyService(UserAccount user, VehicleID vehicle, LocalDate initDate, LocalTime initHour, GeographicPoint location, StationID startStationID){
+        this.user = user;
+        this.vehicle = vehicle;
         this.initDate = initDate;
+        this.initHour = initHour;
+        this.originPoint = location;
+        this.startStation = startStationID;
     }
 
-    public void setOriginPoint(float lat, float lon){
-        this.originPoint = originPoint;
+    public JourneyService(){}
+
+
+    public void setStartStation(StationID startStation){
+        this.startStation = startStation;
     }
 
-    public void setEndPoint(GeographicPoint gp){
-        this.endPoint = gp;
-    }
-
-    public void setEndHour(LocalTime endHour) {
-        this.endHour = endHour;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-
-
-
-    public void setAvgSpeed(float avgSpeed) {
-        this.avgSpeed = avgSpeed;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public int setDuration(LocalTime initHour, LocalTime endHour) {
+        if (initHour != null && endHour != null) {
+            Duration duration = Duration.between(initHour, endHour);
+            this.duration = (int) duration.toMinutes();
+        }
+        return duration;
     }
 
     public void setDistance(float distance) {
         this.distance = distance;
     }
 
-    public void setServiceID(int id){
-        this.serviceID = id;
+    public void setAvgSpeed(float distance,float duration) {
+        this.avgSpeed = distance / duration*60;
+    }
+
+    public void setOriginPoint(GeographicPoint gp){
+        this.originPoint = gp;
+    }
+
+    public void setInitDate(LocalDate initDate) {
+        this.initDate = initDate;
+    }
+
+    public void setInitHour(LocalTime initHour) {
+        this.initHour = initHour;
+    }
+
+    public void setEndPoint(GeographicPoint gp){
+        this.endPoint = gp;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setEndHour(LocalTime endHour) {
+        this.endHour = endHour;
     }
 
     public void setImporte(BigDecimal importe){
         this.importe = importe;
     }
 
-    public JourneyService(int serviceID, UserAccount user, VehicleID vehicle, StationID startStation, GeographicPoint originPoint, GeographicPoint endPoint) {
-        this.serviceID = serviceID;
-        this.user = user;
-        this.vehicle = vehicle;
-        this.startStation = startStation;
-        this.originPoint = originPoint;
-        this.endPoint = endPoint;
+    public void setServiceID(int id){
+        this.serviceID = id;
     }
 
-    public JourneyService(){
-
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
     }
 
     // The setter methods to be used
@@ -111,19 +108,16 @@ public class JourneyService {
         this.initDate = LocalDate.now();
     }
 
-
-    public GeographicPoint getEndPoint() {
-        return endPoint;
+    public void setServiceFinish(LocalTime endTime, float distance, int duration, float avgSpeed, BigDecimal amount) {
+        this.endHour = endTime;
+        this.distance = distance;
+        this.duration = duration;
+        this.avgSpeed = avgSpeed;
+        this.importe = amount;
     }
 
-    public BigDecimal getImporte() {
-        return importe;
-    }
 
     // Getters
-    public int getServiceID() {
-        return serviceID;
-    }
 
     public UserAccount getUser() {
         return user;
@@ -137,73 +131,55 @@ public class JourneyService {
         return startStation;
     }
 
-    public GeographicPoint getoriginPoint() {
-        return originPoint;
-    }
-
-    public LocalTime getInitHour() {
-        return initHour;
-    }
-
-    public LocalTime getEndHour() {
-        return endHour;
-    }
-
-    public LocalDate getInitDate() {
-        return initDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public float getDistance() {
-        return distance;
+    public StationID getEndStation() {
+        return endStation;
     }
 
     public int getDuration() {
         return duration;
     }
 
+    public float getDistance() {
+        return distance;
+    }
+
     public float getAvgSpeed() {
         return avgSpeed;
     }
 
-    public int setDuration(LocalTime initHour, LocalTime endHour) {
-        if (initHour != null && endHour != null) {
-            Duration duration = Duration.between(initHour, endHour);
-
-    public BigDecimal getAmount() {
-        return amount;
+    public GeographicPoint getOriginPoint() {
+        return originPoint;
     }
 
-    public boolean isInProgress() { return inProgress; }
-
-    // The setter methods to be used
-
-    public void setServiceFinish(LocalDateTime endTime, float distance, int duration, float avgSpeed, BigDecimal amount) {
-        this.endTime = endTime;
-        this.distance = distance;
-        this.duration = duration;
-        this.avgSpeed = avgSpeed;
-        this.amount = amount;
+    public LocalDate getInitDate() {
+        return initDate;
     }
 
-    public void setInProgress(boolean inProgress) {
-        this.inProgress = inProgress;
+    public LocalTime getInitHour() {
+        return initHour;
     }
 
-    public void calculateDuration() {
-        if (startTime != null && endTime != null) {
-            Duration duration = Duration.between(startTime, endTime);
-            this.duration = (int) duration.toMinutes();
-        }
+    public GeographicPoint getEndPoint() {
+        return endPoint;
     }
 
-    public void setAvgSpeed(float distance,float duration) {
-            this.avgSpeed = distance / duration*60;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
+    public LocalTime getEndHour() {
+        return endHour;
+    }
 
+    public BigDecimal getImporte(){
+        return importe;
+    }
 
+    public int getServiceID() {
+        return serviceID;
+    }
+
+    public boolean isInProgress() {
+        return inProgress;
+    }
 }
