@@ -4,6 +4,8 @@ import data.GeographicPoint;
 import data.VehicleID;
 import services.smartfeatures.QRDecoder;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Internal classes involved in the use of the service
  */
@@ -11,17 +13,15 @@ public class PMVehicle {
 
     // The class members
     private GeographicPoint location;
-    private QRDecoder qr;
+    private BufferedImage qrImage;
     private VehicleID id;
-    private int chargeLevel;
     private PMVState state;
 
-    public PMVehicle(PMVState state, GeographicPoint location, QRDecoder qr, VehicleID id, int chargeLevel) {
+    public PMVehicle(VehicleID id, PMVState state, GeographicPoint location, BufferedImage qrImage) {
         this.state = state;
         this.location = location;
-        this.qr = qr;
+        this.qrImage = qrImage;
         this.id = id;
-        this.chargeLevel = chargeLevel;
     }
 
     // Getter methods
@@ -33,9 +33,7 @@ public class PMVehicle {
         return location;
     }
 
-    public QRDecoder getQr() {
-        return qr;
-    }
+    public BufferedImage getQr() {return qrImage;}
 
     public VehicleID getId() {
         return id;

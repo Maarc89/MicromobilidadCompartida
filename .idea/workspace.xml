@@ -5,16 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721bce61-c950-48fc-a3a6-5fe2254aaf15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MicromobilidadCompartida.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MicromobilidadCompartida.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/micromobility/PMVehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/micromobility/PMVehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle$PMVState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle$PMVState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/GeographicPointTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/GeographicPointTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/StationIDTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/StationIDTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/UserAccountTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/UserAccountTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/VehicleIDTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/VehicleIDTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/micromobility/JourneyRealizeHandlerTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/micromobility/PMVehicleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/micromobility/PMVehicleTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,6 +62,12 @@
     &quot;accountId&quot;: &quot;6ad12944-ae50-428d-a8d1-b3965cbef09b&quot;
   }
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -69,17 +86,21 @@
     "JUnit.VehicleIDTest.executor": "Run",
     "JUnit.VehicleIDTest.testEqualityAndHashCode.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "36-tests-unitarios-journeyrealizehandler",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "74-tests-unitarios-pmvehicle",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Marc/IdeaProjects/SCP/KnapsackSec",
-    "project.structure.last.edited": "SDKs",
+    "last_opened_file_path": "C:/Users/angel/Desktop/MMC",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.46091953",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.JourneyRealizeHandlerTest">
+  <component name="RunManager" selected="JUnit.PMVehicleTest">
     <configuration name="JourneyRealizeHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MicromobilidadCompartida" />
       <extension name="coverage">
@@ -95,16 +116,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StationIDTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MicromobilidadCompartida" />
+    <configuration name="PMVehicleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tu-proyecto" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.*" />
+          <option name="PATTERN" value="micromobility.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="data" />
-      <option name="MAIN_CLASS_NAME" value="data.StationIDTest" />
+      <option name="PACKAGE_NAME" value="micromobility" />
+      <option name="MAIN_CLASS_NAME" value="micromobility.PMVehicleTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,13 +179,21 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PMVehicleTest" />
         <item itemvalue="JUnit.JourneyRealizeHandlerTest" />
         <item itemvalue="JUnit.VehicleIDTest.testEqualityAndHashCode" />
         <item itemvalue="JUnit.VehicleIDTest" />
         <item itemvalue="JUnit.UserAccountTest" />
-        <item itemvalue="JUnit.StationIDTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -174,6 +203,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1734457271296</updated>
+      <workItem from="1735418249930" duration="18000" />
     </task>
     <servers />
   </component>
