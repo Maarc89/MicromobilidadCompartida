@@ -1,13 +1,25 @@
 package data;
 
+import micromobility.PMVehicle;
+import micromobility.payment.Payment;
+
 import java.util.Objects;
 
 public class UserAccount {
 
     private final String userAccount;
+    private final String name;
     private final String password;
+    private final String email;
 
-    public UserAccount(String userAccount, String password) {
+    public static final char GatewayPayment = 'G';
+    public static final char CardPayment = 'C';
+    public static final char BizumPayment = 'B';
+    public static final char WalletPayment = 'W';
+
+
+    public UserAccount(String userAccount, String name, String password, String email) {
+
         if (userAccount == null) {
             throw new NullPointerException("UserAccount no puede ser nulo.");
         }
@@ -22,8 +34,17 @@ public class UserAccount {
             throw new IllegalArgumentException("Password mal formada. Debe tener al menos 6 caracteres, incluir una letra mayúscula, un número.");
         }
 
+        if (email == null) {
+            throw new NullPointerException("Password no puede ser nulo.");
+        }
+        if (!isValidEmail(email)) {
+            throw new IllegalArgumentException("Password mal formada. Debe tener al menos 6 caracteres, incluir una letra mayúscula, un número.");
+        }
+
         this.userAccount = userAccount;
         this.password = password;
+        this.name = name;
+        this.email = email;
     }
 
     private boolean isValid(String userAccount) {
@@ -34,8 +55,20 @@ public class UserAccount {
         return password.matches("^(?=.*[A-Z])(?=.*\\d).{6,}$"); // 1 letra mayúsculas + 1 letra miniscula + 1 número
     }
 
-    public String getAccount() {
+    private boolean isValidEmail(String email) {
+        return email.matches("^[^@\\s]+@[^@\\s]+\\.com$");
+    }
+
+    public String getUserAccount() {
         return userAccount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
@@ -63,3 +96,4 @@ public class UserAccount {
                 "account='" + userAccount + '\'' + '}';
     }
 }
+

@@ -16,6 +16,8 @@ public class PMVehicle {
     private int chargeLevel;
     private PMVState state;
 
+
+
     public PMVehicle(PMVState state, GeographicPoint location, QRDecoder qr, VehicleID id, int chargeLevel) {
         this.state = state;
         this.location = location;
