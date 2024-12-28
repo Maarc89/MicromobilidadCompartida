@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721bce61-c950-48fc-a3a6-5fe2254aaf15" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MicromobilidadCompartida.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MicromobilidadCompartida.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,27 +69,27 @@
     "JUnit.VehicleIDTest.executor": "Run",
     "JUnit.VehicleIDTest.testEqualityAndHashCode.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "36-tests-unitarios-journeyrealizehandler",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Marc/IdeaProjects/SCP/KnapsackSec",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.46091953",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.StationIDTest">
-    <configuration name="GeographicPointTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.JourneyRealizeHandlerTest">
+    <configuration name="JourneyRealizeHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MicromobilidadCompartida" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.*" />
+          <option name="PATTERN" value="micromobility.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="data" />
-      <option name="MAIN_CLASS_NAME" value="data.GeographicPointTest" />
+      <option name="PACKAGE_NAME" value="micromobility" />
+      <option name="MAIN_CLASS_NAME" value="micromobility.JourneyRealizeHandlerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.JourneyRealizeHandlerTest" />
         <item itemvalue="JUnit.VehicleIDTest.testEqualityAndHashCode" />
         <item itemvalue="JUnit.VehicleIDTest" />
         <item itemvalue="JUnit.UserAccountTest" />
         <item itemvalue="JUnit.StationIDTest" />
-        <item itemvalue="JUnit.GeographicPointTest" />
       </list>
     </recent_temporary>
   </component>
