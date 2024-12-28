@@ -30,7 +30,7 @@ public class JourneyService {
     private LocalDate endDate;        // Fecha de finalización del servicio
     private LocalTime endHour;        // Hora de finalización del servicio
     private BigDecimal importe;       // Import final
-    private int serviceID;           // Identificador del viaje
+    private String serviceID;           // Identificador del viaje
     private boolean inProgress;
 
 
@@ -94,8 +94,9 @@ public class JourneyService {
         this.importe = importe;
     }
 
-    public void setServiceID(int id){
+    public void setServiceID(String id){
         this.serviceID = id;
+
     }
 
     public void setInProgress(boolean inProgress) {
@@ -175,7 +176,7 @@ public class JourneyService {
         return importe;
     }
 
-    public int getServiceID() {
+    public String getServiceID() {
         return serviceID;
     }
 
