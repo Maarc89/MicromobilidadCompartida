@@ -67,4 +67,3 @@ class PMVehicleTest {
         assertNotEquals(PMVehicle.PMVState.TemporaryParking, pmVehicle.getState());
     }
 }
-
