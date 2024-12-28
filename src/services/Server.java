@@ -4,6 +4,7 @@ import data.GeographicPoint;
 import data.StationID;
 import data.UserAccount;
 import data.VehicleID;
+import data.ServiceID;
 import exceptions.ConnectException;
 import exceptions.InvalidPairingArgsException;
 import exceptions.PMVNotAvailException;
@@ -40,4 +41,6 @@ public interface Server {
             throws PairingNotFoundException;
 
     void registerLocation(VehicleID veh, StationID st);
+
+    void registerPayment(ServiceID servID, UserAccount user, BigDecimal imp,  char payMeth) throws ConnectException;
 }
