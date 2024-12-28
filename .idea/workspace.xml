@@ -5,10 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721bce61-c950-48fc-a3a6-5fe2254aaf15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MicromobilidadCompartida.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MicromobilidadCompartida.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/GeographicPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/GeographicPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/VehicleID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/VehicleID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/GeographicPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/StationID.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/UserAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/VehicleID.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/ConnectException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/CorruptedImgException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InvalidLongLattException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InvalidPairingArgsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/PMVNotAvailException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/PMVPhysicalException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/PairingNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/ProceduralException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/JourneyRealizeHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/JourneyService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle$PMVState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/assets/qrcode-generado.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/smartfeatures/ArduinoMicroController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/smartfeatures/QRDecoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/smartfeatures/UnbondedBTSignal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/GeographicPointTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/StationIDTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/UserAccountTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/VehicleIDTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/micromobility/JourneyRealizeHandlerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/micromobility/JourneyServiceTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,13 +90,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.GeographicPointTest.executor": "Run",
+    "JUnit.JourneyRealizeHandlerTest.executor": "Run",
     "JUnit.JourneyServiceTest.executor": "Run",
     "JUnit.StationIDTest.executor": "Run",
     "JUnit.UserAccountTest.executor": "Run",
     "JUnit.VehicleIDTest.executor": "Run",
     "JUnit.VehicleIDTest.testEqualityAndHashCode.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "36-tests-unitarios-journeyrealizehandler",
+    "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Marc/IdeaProjects/SCP/KnapsackSec",
