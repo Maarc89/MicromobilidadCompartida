@@ -48,7 +48,7 @@ class JourneyRealizeHandlerTest {
         qrImageMock = mock(BufferedImage.class);
         originLocationMock = mock(GeographicPoint.class);
 
-        originStationMock = new StationID("station_001");
+        originStationMock = new StationID("ST1234");
 
         handler = new JourneyRealizeHandler(
                 qrDecoderMock,
@@ -64,7 +64,7 @@ class JourneyRealizeHandlerTest {
     @Test
     void testScanQR_SuccessfulPairing() throws Exception {
         // Mock inputs and expected interactions
-        VehicleID vehicleID = new VehicleID("vehicle_001");
+        VehicleID vehicleID = new VehicleID("VH12345");
         LocalDateTime now = LocalDateTime.now();
 
         when(qrDecoderMock.getVehicleID(qrImageMock)).thenReturn(vehicleID);
@@ -97,7 +97,7 @@ class JourneyRealizeHandlerTest {
     @Test
     void testScanQR_ThrowsPMVNotAvailException() throws Exception {
         // Mock a PMVNotAvailException
-        when(qrDecoderMock.getVehicleID(qrImageMock)).thenReturn(new VehicleID("vehicle_001"));
+        when(qrDecoderMock.getVehicleID(qrImageMock)).thenReturn(new VehicleID("VH12345"));
         doThrow(new PMVNotAvailException("PMV not available"))
                 .when(serverMock).checkPMVAvail(any(VehicleID.class));
 

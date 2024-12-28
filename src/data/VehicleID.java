@@ -2,7 +2,7 @@ package data;
 
 import java.util.Objects;
 
-public final class VehicleID {
+public class VehicleID {
 
     // La id serà de longitud fija (7 caracteres), serà una combinación de letras y números
     // y solo podrà contener letras mayúsculas (2, en concreto seràn siempre VH)

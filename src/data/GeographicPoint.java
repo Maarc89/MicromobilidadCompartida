@@ -6,7 +6,7 @@ import exceptions.InvalidLongLattException;
  * Essential data classes
  */
 
-final public class GeographicPoint {
+public class GeographicPoint {
     // The geographical coordinates expressed as decimal degrees
     private final float latitude;
     private final float longitude;
