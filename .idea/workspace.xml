@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="721bce61-c950-48fc-a3a6-5fe2254aaf15" name="Changes" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/micromobility/PMVehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/micromobility/PMVehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle$PMVState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle$PMVState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/GeographicPointTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/GeographicPointTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/StationIDTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/StationIDTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/UserAccountTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/UserAccountTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/VehicleIDTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/data/VehicleIDTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/micromobility/JourneyRealizeHandlerTest.class" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/GeographicPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/GeographicPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/VehicleID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/VehicleID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/GeographicPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/StationID.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/UserAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/VehicleID.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/ConnectException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/CorruptedImgException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InvalidLongLattException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InvalidPairingArgsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/PMVNotAvailException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/PMVPhysicalException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/PairingNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/ProceduralException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/JourneyRealizeHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/JourneyService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle$PMVState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/PMVehicle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/micromobility/assets/qrcode-generado.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/smartfeatures/ArduinoMicroController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/smartfeatures/QRDecoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/smartfeatures/UnbondedBTSignal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/GeographicPointTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/StationIDTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/UserAccountTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/data/VehicleIDTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/micromobility/JourneyRealizeHandlerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/micromobility/JourneyServiceTest.class" beforeDir="false" />
+>>>>>>> a77989ab5db08777bd824fda5a33e8c7cfae5721
+      <change beforePath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/micromobility/JourneyRealizeHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/micromobility/PMVehicleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/micromobility/PMVehicleTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="36-tests-unitarios-journeyrealizehandler" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Maarc89&quot;
+  }
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+        <option value="dev" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Maarc89/MicromobilidadCompartida.git&quot;,
+    &quot;accountId&quot;: &quot;6ad12944-ae50-428d-a8d1-b3965cbef09b&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2qM0jG50wMZ07M2NZ5nqSVhAChR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.GeographicPointTest.executor": "Run",
+    "JUnit.JourneyRealizeHandlerTest.executor": "Run",
+    "JUnit.JourneyServiceTest.executor": "Run",
+    "JUnit.StationIDTest.executor": "Run",
+    "JUnit.UserAccountTest.executor": "Run",
+    "JUnit.VehicleIDTest.executor": "Run",
+    "JUnit.VehicleIDTest.testEqualityAndHashCode.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "74-tests-unitarios-pmvehicle",
+=======
+    "git-widget-placeholder": "dev",
+>>>>>>> a77989ab5db08777bd824fda5a33e8c7cfae5721
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/angel/Desktop/MMC",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.46091953",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.PMVehicleTest">
+    <configuration name="JourneyRealizeHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MicromobilidadCompartida" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="micromobility.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="micromobility" />
+      <option name="MAIN_CLASS_NAME" value="micromobility.JourneyRealizeHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PMVehicleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tu-proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="micromobility.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="micromobility" />
+      <option name="MAIN_CLASS_NAME" value="micromobility.PMVehicleTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserAccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MicromobilidadCompartida" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="data" />
+      <option name="MAIN_CLASS_NAME" value="data.UserAccountTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VehicleIDTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MicromobilidadCompartida" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="data" />
+      <option name="MAIN_CLASS_NAME" value="data.VehicleIDTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VehicleIDTest.testEqualityAndHashCode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MicromobilidadCompartida" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="data" />
+      <option name="MAIN_CLASS_NAME" value="data.VehicleIDTest" />
+      <option name="METHOD_NAME" value="testEqualityAndHashCode" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PMVehicleTest" />
+        <item itemvalue="JUnit.JourneyRealizeHandlerTest" />
+        <item itemvalue="JUnit.VehicleIDTest.testEqualityAndHashCode" />
+        <item itemvalue="JUnit.VehicleIDTest" />
+        <item itemvalue="JUnit.UserAccountTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="721bce61-c950-48fc-a3a6-5fe2254aaf15" name="Changes" comment="" />
+      <created>1734457271296</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734457271296</updated>
+      <workItem from="1735418249930" duration="18000" />
+    </task>
+    <servers />
+  </component>
+</project>
