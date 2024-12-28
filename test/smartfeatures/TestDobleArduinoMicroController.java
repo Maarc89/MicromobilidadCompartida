@@ -11,7 +11,7 @@ import services.smartfeatures.ArduinoMicroController;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-public class TestDoblesArduinoMicroController {
+public class TestDobleArduinoMicroController {
     private ArduinoMicroController mockController;
 
     @BeforeEach
