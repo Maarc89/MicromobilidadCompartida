@@ -20,6 +20,10 @@ public class MockArduinoMicroController implements ArduinoMicroController {
         this.jrh = jrh;
     }
 
+    public void setFailureState(boolean failure) {
+        this.isConected = !failure;
+    }
+
     public void setBTconnection() throws ConnectException {
         if(isConected) throw new ConnectException("BT Alredy conected");
         isConected = true;

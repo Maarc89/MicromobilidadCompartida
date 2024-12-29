@@ -2,13 +2,10 @@ package micromobility;
 
 import data.*;
 import exceptions.*;
-import micromobility.payment.Payment;
-import micromobility.payment.Wallet;
-import micromobility.payment.WalletPayment;
+import micromobility.payment.*;
+
 import services.Server;
-import services.smartfeatures.ArduinoMicroController;
-import services.smartfeatures.QRDecoder;
-import services.smartfeatures.UnbondedBTSignal;
+import services.smartfeatures.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,8 +23,8 @@ public class JourneyRealizeHandler {
 
     private UserAccount user;
     private PMVehicle pmVehicle; // primary mobility vehicle
-    private StationID originStationId; //origin station id
-    private StationID endStationId; //origin station id
+    public StationID originStationId; //origin station id
+    public StationID endStationId; //origin station id
     private StationID CurrentStationID; //current station id
     private JourneyService journeyService;
 
@@ -41,10 +38,12 @@ public class JourneyRealizeHandler {
 
     public JourneyRealizeHandler(){}
 
+
     // Input events from the unbonded Bluetooth channel
     public void broadcastStationID(StationID stID) throws ConnectException {
         System.out.println("StationID transmitido: " + stID);
         this.CurrentStationID = stID;
+
     }
 
     // User interface input events
@@ -52,16 +51,25 @@ public class JourneyRealizeHandler {
             CorruptedImgException, PMVNotAvailException,
             ProceduralException {
 
+        if (originStationId == null){
+            throw new ProceduralException("NO STATION");
+        }
+
         VehicleID id = qrdecoder.getVehicleID(img);
         server.checkPMVAvail(id);
         LocalDateTime time = LocalDateTime.now();
+
         JourneyService s = new JourneyService(null, id, time.toLocalDate(),
                 time.toLocalTime(), null, null);
-        journeyService = s;
-        //s.setServiceInit(); No fem un serviceInit perque ja esta inicialitzat dintre del time/JourneyService
-        setStation(CurrentStationID, true);
 
+        s.setStartStation(CurrentStationID);
+        //s.setServiceInit(); No fem un serviceInit perque ja esta inicialitzat dintre del time/JourneyService
+        //setStation(CurrentStationID, true);
+
+        StationID st = s.getStartStation();
         arduino.setBTconnection();
+        this.pmVehicle = new PMVehicle(id, PMVehicle.PMVState.NotAvailable, st.getLocation(), img);
+
         pmVehicle.setNotAvailb();
         server.registerPairing(user, id, originStationId, journeyService.getOriginPoint(), time);
         server.setPairing(user, id, originStationId, journeyService.getOriginPoint(), time);
@@ -243,9 +251,11 @@ public class JourneyRealizeHandler {
 // Setter methods for injecting dependencies
 
     public void setStation(StationID station, boolean isOrigin) {
+
         if (isOrigin) {
             this.originStationId = station;
             journeyService.setOriginPoint(station.getLocation());
+
         } else {
             this.endStationId = station;
             journeyService.setEndPoint(station.getLocation());
@@ -268,7 +278,11 @@ public class JourneyRealizeHandler {
         this.importe = importe;
     }
 
+
     public void setBluetooth(UnbondedBTSignal bluetooth) {
         this.bluetooth = bluetooth;
+    }
+    public void setJourneyService(JourneyService journeyService) {
+        this.journeyService = journeyService;
     }
 }
