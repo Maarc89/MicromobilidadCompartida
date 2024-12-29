@@ -28,21 +28,13 @@ public class MockArduinoMicroController implements ArduinoMicroController {
     public void startDriving() throws PMVPhysicalException, ConnectException, ProceduralException {
         if(!isConected) throw new ConnectException("Must Be Connected First");
         if(!phisicalError) throw new PMVPhysicalException("Something Went Rong");
-        try{
-            jrh.startDriving();
-        }catch (Exception e) {
-            throw new ProceduralException("unaveilable to do startDriving");
-        }
+        jrh.startDriving();
     }
 
     public void stopDriving() throws PMVPhysicalException, ConnectException, ProceduralException {
         if(!isConected) throw new ConnectException("Must Be Connected First");
         if(!phisicalError) throw new PMVPhysicalException("Something Went Rong");
-        try{
-            jrh.stopDriving();
-        }catch (Exception e) {
-            throw new ProceduralException("unaveilable to do stopDriving");
-        }
+        jrh.stopDriving();
     }
 
     public void undoBTconnection() {
