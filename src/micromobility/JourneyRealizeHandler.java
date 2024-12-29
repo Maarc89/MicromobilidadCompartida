@@ -39,15 +39,7 @@ public class JourneyRealizeHandler {
 
     private BigDecimal importe;
 
-    public JourneyRealizeHandler(QRDecoder qrdecoder, StationID originStationId, PMVehicle pmVehicle, ArduinoMicroController arduino, Server server, BufferedImage img, UnbondedBTSignal bluetooth) {
-        this.qrdecoder = qrdecoder;
-        this.originStationId = originStationId;
-        this.pmVehicle = pmVehicle;
-        this.arduino = arduino;
-        this.server = server;
-        this.img = img;
-        this.bluetooth = bluetooth;
-    }
+    public JourneyRealizeHandler(){}
 
     // Input events from the unbonded Bluetooth channel
     public void broadcastStationID(StationID stID) throws ConnectException {
@@ -258,6 +250,18 @@ public class JourneyRealizeHandler {
             this.endStationId = station;
             journeyService.setEndPoint(station.getLocation());
         }
+    }
+
+    public void setQrdecoder(QRDecoder qrdecoder) {
+        this.qrdecoder = qrdecoder;
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
+    }
+
+    public void setArduino(ArduinoMicroController arduino) {
+        this.arduino = arduino;
     }
 
     public void setImportxPayment (BigDecimal importe){
