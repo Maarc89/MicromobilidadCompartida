@@ -9,38 +9,42 @@ import services.smartfeatures.ArduinoMicroController;
 public class MockArduinoMicroController implements ArduinoMicroController {
 
     private boolean isConected;
+    private boolean phisicalError;
+    private JourneyRealizeHandler jrh;
 
-    public MockArduinoMicroController(Boolean isConected){
+    public MockArduinoMicroController(Boolean isConected, Boolean phisicalError){
         this.isConected = isConected;
+        this.phisicalError = phisicalError;
+    }
+    public MockArduinoMicroController(JourneyRealizeHandler jrh){
+        this.jrh = jrh;
     }
 
-    @Override
     public void setBTconnection() throws ConnectException {
-        if(isConected) throw new ConnectException("Alredy conected");
+        if(isConected) throw new ConnectException("BT Alredy conected");
         isConected = true;
     }
 
-    @Override
     public void startDriving() throws PMVPhysicalException, ConnectException, ProceduralException {
         if(!isConected) throw new ConnectException("Must Be Connected First");
+        if(!phisicalError) throw new PMVPhysicalException("Something Went Rong");
         try{
-            //JourneyRealizeHandler.startDriving();
+            jrh.startDriving();
         }catch (Exception e) {
-            throw new ProceduralException("unaveilable to startDriving");
+            throw new ProceduralException("unaveilable to do startDriving");
         }
     }
 
-    @Override
     public void stopDriving() throws PMVPhysicalException, ConnectException, ProceduralException {
         if(!isConected) throw new ConnectException("Must Be Connected First");
+        if(!phisicalError) throw new PMVPhysicalException("Something Went Rong");
         try{
-            //JourneyRealizeHandler.stopDriving();
+            jrh.stopDriving();
         }catch (Exception e) {
-            throw new ProceduralException("unaveilable to stopDriving");
+            throw new ProceduralException("unaveilable to do stopDriving");
         }
     }
 
-    @Override
     public void undoBTconnection() {
         isConected = false;
     }

@@ -58,6 +58,10 @@ public class JourneyService {
         return duration;
     }
 
+    public void setDuration1(int duration){
+        this.duration = duration;
+    }
+
     public void setDistance(float distance) {
         this.distance = distance;
     }

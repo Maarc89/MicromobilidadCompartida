@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MockQRDecoderTest {
+class TestQRDecoder {
 
     private MockQRDecoder validMock;
     private MockQRDecoder invalidMock;
