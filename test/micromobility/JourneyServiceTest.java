@@ -19,7 +19,7 @@ class JourneyServiceTest {
 
     @BeforeEach
     void setUp() {
-        UserAccount user = new UserAccount("USR123", "Abmaria1"); // Mock user
+        UserAccount user = new UserAccount("USR123", "Maria Abc", "Abmaria1", "maria.abc@example.com"); // Mock user
         VehicleID vehicle = new VehicleID("VH12345"); // Mock vehicle
         StationID startStation = new StationID("ST1234");
         GeographicPoint originPoint = new GeographicPoint(40.2f, -74.7f);
