@@ -24,7 +24,7 @@ public class MockArduinoMicroController implements ArduinoMicroController {
     public void startDriving() throws PMVPhysicalException, ConnectException, ProceduralException {
         if(!isConected) throw new ConnectException("Must Be Connected First");
         try{
-            JourneyRealizeHandler.startDriving();
+            //JourneyRealizeHandler.startDriving();
         }catch (Exception e) {
             throw new ProceduralException("unaveilable to startDriving");
         }
@@ -34,7 +34,7 @@ public class MockArduinoMicroController implements ArduinoMicroController {
     public void stopDriving() throws PMVPhysicalException, ConnectException, ProceduralException {
         if(!isConected) throw new ConnectException("Must Be Connected First");
         try{
-            JourneyRealizeHandler.stopDriving();
+            //JourneyRealizeHandler.stopDriving();
         }catch (Exception e) {
             throw new ProceduralException("unaveilable to stopDriving");
         }
