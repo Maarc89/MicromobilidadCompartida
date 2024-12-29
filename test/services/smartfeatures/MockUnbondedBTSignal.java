@@ -1,29 +1,24 @@
 package services.smartfeatures;
 
+import data.StationID;
 import exceptions.ConnectException;
+import micromobility.JourneyRealizeHandler;
 
 /**
  * Mock implementation of UnbondedBTSignal for testing purposes.
  */
 public class MockUnbondedBTSignal implements UnbondedBTSignal {
-
-    private final boolean shouldThrowException;
-
-    /**
-     * Constructor for MockUnbondedBTSignal.
-     *
-     * @param shouldThrowException If true, the mock will throw a ConnectException when BTbroadcast() is called.
-     */
-    public MockUnbondedBTSignal(boolean shouldThrowException) {
-        this.shouldThrowException = shouldThrowException;
+    private JourneyRealizeHandler jrh;
+    private boolean conectionError;
+    private StationID stID;
+    public MockUnbondedBTSignal(JourneyRealizeHandler jrh){
+        this.jrh = jrh;
     }
+
 
     @Override
     public void BTbroadcast() throws ConnectException {
-        if (shouldThrowException) {
-            throw new ConnectException("Simulated connection failure");
-        }
-        // Simulate successful broadcasting
-        System.out.println("Mock BT broadcast successful.");
+        if(!conectionError) throw new ConnectException("Conection Error");
+        jrh.broadcastStationID(stID);
     }
 }

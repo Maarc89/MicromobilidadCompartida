@@ -50,10 +50,9 @@ public class JourneyRealizeHandler {
     }
 
     // Input events from the unbonded Bluetooth channel
-    public void broadcastStationID(String stID) throws ConnectException {
-        bluetooth.BTbroadcast();
+    public void broadcastStationID(StationID stID) throws ConnectException {
         System.out.println("StationID transmitido: " + stID);
-        this.CurrentStationID = new StationID(stID);
+        this.CurrentStationID = stID;
     }
 
     // User interface input events
@@ -265,4 +264,7 @@ public class JourneyRealizeHandler {
         this.importe = importe;
     }
 
+    public void setBluetooth(UnbondedBTSignal bluetooth) {
+        this.bluetooth = bluetooth;
+    }
 }
