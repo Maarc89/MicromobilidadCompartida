@@ -265,4 +265,7 @@ public class JourneyRealizeHandler {
         this.importe = importe;
     }
 
+    public void setBluetooth(UnbondedBTSignal bluetooth) {
+        this.bluetooth = bluetooth;
+    }
 }
