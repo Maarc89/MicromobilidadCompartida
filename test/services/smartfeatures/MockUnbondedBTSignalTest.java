@@ -1,9 +1,7 @@
-package dobles;
+package services.smartfeatures;
 
-import dobles.MockUnbondedBTSignal;
 import exceptions.ConnectException;
 import org.junit.jupiter.api.Test;
-import services.smartfeatures.UnbondedBTSignal;
 
 import static org.junit.jupiter.api.Assertions.*;
 

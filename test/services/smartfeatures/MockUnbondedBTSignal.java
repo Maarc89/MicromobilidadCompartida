@@ -1,7 +1,6 @@
-package dobles;
+package services.smartfeatures;
 
 import exceptions.ConnectException;
-import services.smartfeatures.UnbondedBTSignal;
 
 /**
  * Mock implementation of UnbondedBTSignal for testing purposes.

@@ -1,4 +1,4 @@
-package smartfeatures;
+package services.smartfeatures;
 
 import exceptions.ConnectException;
 import exceptions.PMVPhysicalException;

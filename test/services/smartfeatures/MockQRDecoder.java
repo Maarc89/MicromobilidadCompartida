@@ -1,8 +1,7 @@
-package dobles;
+package services.smartfeatures;
 
 import data.VehicleID;
 import exceptions.CorruptedImgException;
-import services.smartfeatures.QRDecoder;
 
 import java.awt.image.BufferedImage;
 
