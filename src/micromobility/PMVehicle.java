@@ -2,7 +2,7 @@ package micromobility;
 
 import data.GeographicPoint;
 import data.VehicleID;
-import services.smartfeatures.QRDecoder;
+
 
 import java.awt.image.BufferedImage;
 

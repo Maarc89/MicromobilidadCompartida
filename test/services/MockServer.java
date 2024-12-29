@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class MockServer implements Server {
 
+    private JourneyService journeyService;
     private boolean isAvailable;
     private final Map<VehicleID, Boolean> vehicleAvailability;
     private final Map<UserAccount, JourneyService> activePairings;
@@ -24,6 +25,12 @@ public class MockServer implements Server {
         this.activePairings = new HashMap<>();
     }
 
+    public void setServerConnected(boolean connected) {
+        this.isAvailable = connected;
+    }
+    public void setJourneyService(JourneyService journeyService) {
+        this.journeyService = journeyService;
+    }
     public void setVehicleAvailability(VehicleID vhID, boolean available) {
         vehicleAvailability.put(vhID, available);
     }
@@ -38,7 +45,7 @@ public class MockServer implements Server {
             throw new ConnectException("Server is unavailable.");
         }
         Boolean available = vehicleAvailability.get(vhID);
-        if (available == null || !available) {
+        if (available != null && !available) {
             throw new PMVNotAvailException("PMV not available: " + vhID.getId());
         }
     }
@@ -52,6 +59,7 @@ public class MockServer implements Server {
         if (activePairings.containsKey(user)) {
             throw new InvalidPairingArgsException("User already has an active pairing.");
         }
+
         JourneyService service = new JourneyService(user, veh, date.toLocalDate(), date.toLocalTime(), loc, st);
         activePairings.put(user, service);
     }
@@ -89,7 +97,7 @@ public class MockServer implements Server {
 
     @Override
     public void registerLocation(VehicleID veh, StationID st) {
-        // Mock implementation: Simulate storing the location.
+
         System.out.println("Registered location: Vehicle " + veh.getId() + " at Station " + st.getId());
     }
 
@@ -98,7 +106,7 @@ public class MockServer implements Server {
         if (!isAvailable) {
             throw new ConnectException("Server is unavailable.");
         }
-        // Mock implementation: Simulate successful payment registration.
+
         System.out.println("Payment registered: ServiceID " + servID.getServiceID() + ", User " + user.getUserAccount() + ", Amount " + imp);
     }
 }

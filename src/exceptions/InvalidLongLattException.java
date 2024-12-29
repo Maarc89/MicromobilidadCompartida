@@ -5,7 +5,4 @@ public class InvalidLongLattException extends RuntimeException {
         super(message);
     }
 
-    public InvalidLongLattException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }
