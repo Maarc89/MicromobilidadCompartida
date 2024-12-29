@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bde39b1-8022-41e8-9edd-44e15f02af3c" name="Changes" comment="">
+    <list default="true" id="f688e00b-ad91-4de1-8b7a-952e600a509a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ServiceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/ServiceID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/smartfeatures/TestDobleArduinoMicroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/smartfeatures/MockArduinoMicroController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +78,7 @@
     "JUnit.VehicleIDTest.testEqualityAndHashCode.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "40-tests-dobles-unbondedbtsingal",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
