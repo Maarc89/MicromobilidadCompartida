@@ -27,9 +27,9 @@ public class ServiceID {
         return importe;
     }
 
-    public setImporte(BigDecimal importe){
+    /*public setImporte(BigDecimal importe){
         this.importe = importe;
-    }
+    }*/
 
     public void setImporte(BigDecimal importe) {
         this.importe = importe;
