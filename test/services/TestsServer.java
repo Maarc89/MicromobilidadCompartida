@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MockServerTest {
+class TestsServer {
 
     private MockServer mockServer;
     private UserAccount user;
